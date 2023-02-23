@@ -127,7 +127,6 @@ router.put(
 
 //Route 4: Delete a note using: DELETE "api/notes/deletenote". Login Required
 router.delete("/deletenote/:id", fetchuser, async (req, res) => {
-  res.status(400).json({ errors: errors.array() });
   try {
     let note = await Notes.findById(req.params.id);
     if (!note) {
