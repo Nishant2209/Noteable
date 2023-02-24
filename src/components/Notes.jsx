@@ -3,10 +3,10 @@ import noteContext from "../context/notes/noteContext";
 import NoteItem from "./NoteItem";
 import { AddNotes } from "./AddNotes";
 
-export default function Notes() {
+export default function Notes(props) {
   const context = useContext(noteContext);
   const { notes, fetchNote, editNote } = context;
-  const ref = useRef(null);
+  const { showAlert } = props;
   const refClose = useRef(null);
   const [note, setNote] = useState({
     id: "",
@@ -21,7 +21,6 @@ export default function Notes() {
   }, []);
 
   const updateNote = (currentNote) => {
-    ref.current.click();
     setNote({
       id: currentNote._id,
       etitle: currentNote.title,
@@ -30,9 +29,11 @@ export default function Notes() {
     });
   };
 
-  const handleClick = (e) => {
+  const handleClick = () => {
     editNote(note.id, note.etitle, note.edescription, note.etag);
     refClose.current.click();
+    showAlert("Note Updated Successfully", "success");
+    window.scrollTo(0, 0);
   };
 
   const onChange = (e) => {
@@ -40,18 +41,7 @@ export default function Notes() {
   };
   return (
     <>
-      <AddNotes />
-      <button
-        type="button"
-        className="btn btn-primary"
-        data-bs-toggle="modal"
-        data-bs-target="#exampleModal"
-        ref={ref}
-        hidden
-      >
-        Launch demo modal
-      </button>
-
+      <AddNotes showAlert={showAlert} />
       <div
         className="modal fade"
         id="exampleModal"
@@ -62,7 +52,7 @@ export default function Notes() {
         <div className="modal-dialog">
           <div className="modal-content">
             <div className="modal-header">
-              <h1 className="modal-title fs-5" id="exampleModalLabel">
+              <h1 className="modal-title fs-5 fw-bold" id="exampleModalLabel">
                 Edit Note
               </h1>
               <button
@@ -141,12 +131,23 @@ export default function Notes() {
         </div>
       </div>
       <div className="row my-3">
-        <h2>Your Notes</h2>
-        {notes.map((note) => {
-          return (
-            <NoteItem note={note} key={note._id} updateNote={updateNote} />
-          );
-        })}
+        <h1 className="fw-bold">Your Notes</h1>
+        {notes.length ? (
+          notes.map((note) => {
+            return (
+              <NoteItem
+                note={note}
+                key={note._id}
+                updateNote={updateNote}
+                showAlert={showAlert}
+              />
+            );
+          })
+        ) : (
+          <div className="container text-center text-danger fs-2 fw-bold">
+            No Notes Available
+          </div>
+        )}
       </div>
     </>
   );
