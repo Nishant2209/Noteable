@@ -47,9 +47,10 @@ export const SignUp = (props) => {
   };
 
   return (
-    <div className="container my-4">
+    <div>
+      <h1 className="fw-bold">Register to continue to Noteable</h1>
       <form onSubmit={handleSubmit}>
-        <div className="mb-3">
+        <div className="my-4">
           <label htmlFor="name" className="form-label">
             Name
           </label>

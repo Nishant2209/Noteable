@@ -38,6 +38,7 @@ export const Login = (props) => {
   };
   return (
     <div>
+      <h1 className="fw-bold">Login to continue to Noteable</h1>
       <form onSubmit={handleSubmit}>
         <div className="my-4">
           <label htmlFor="email" className="form-label">
