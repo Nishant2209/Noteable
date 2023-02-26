@@ -6,7 +6,7 @@ export default function NoteItem(props) {
   const { note, updateNote, showAlert } = props;
   const { deleteNote } = context;
   return (
-    <div className="col-md-3">
+    <div className="col-md-6 col-lg-4 col-xl-3 mx-auto">
       <div className="card my-3" style={{ width: "18rem" }} key={note.id}>
         <div className="card-body d-flex flex-column gap-3">
           <div>
