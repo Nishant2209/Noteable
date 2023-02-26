@@ -8,7 +8,7 @@ export const SignUp = (props) => {
     password: "",
     cpassword: "",
   });
-  const host = "http://localhost:5000";
+  const host = "https://noteable-backend.onrender.com";
   const navigate = useNavigate();
 
   const onChange = (e) => {

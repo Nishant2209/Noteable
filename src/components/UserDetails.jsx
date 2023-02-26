@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 export const UserDetails = () => {
   const token = localStorage.getItem("token");
-  const host = "http://localhost:5000";
+  const host = "https://noteable-backend.onrender.com";
 
   useEffect(() => {
     getUserDetails();

@@ -7,7 +7,7 @@ export const Login = (props) => {
   const context = useContext(noteContext);
   const { fetchNote } = context;
 
-  const host = "http://localhost:5000";
+  const host = "https://noteable-backend.onrender.com";
   const [user, setUser] = useState({ email: "", password: "" });
   let navigate = useNavigate();
 
